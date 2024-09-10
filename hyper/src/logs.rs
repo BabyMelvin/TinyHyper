@@ -2,7 +2,7 @@ use core::fmt::Write;
 
 use log::Level;
 
-use crate::sbi::{eid::EXT_BASE, sbi_ecall, SbiCall};
+use crate::sbi::{eid::{EXT_BASE, SBI_EXT_0_1_CONSOLE_PUTCHAR}, sbi_ecall, SbiCall};
 
 pub struct HyperLog;
 
@@ -48,7 +48,7 @@ impl log::Log for HyperLog {
 
 pub fn console_write_bytes(bytes: &[u8]) {
     let base_call = SbiCall {
-        eid: EXT_BASE,
+        eid: SBI_EXT_0_1_CONSOLE_PUTCHAR,
         fid: 0,
     };
 
