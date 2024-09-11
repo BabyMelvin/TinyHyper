@@ -6,7 +6,6 @@ use log::{LevelFilter, info};
 use logs::HyperLog;
 
 pub mod boot;
-pub mod riscv;
 pub mod driver;
 pub mod sbi;
 pub mod util;

@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 log = "0.4.7"
+riscv = {path = "../third/riscv/riscv"}
+lazy_static = {version="1.4.0", features = ["spin_no_std"]}
