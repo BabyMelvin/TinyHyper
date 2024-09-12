@@ -41,6 +41,7 @@ pub mod delay;
 pub mod interrupt;
 pub mod register;
 pub use riscv_pac::*;
+pub mod hyper;
 
 #[macro_use]
 mod macros;

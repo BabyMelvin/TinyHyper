@@ -72,6 +72,21 @@ pub enum Endianness {
     LittleEndian = 0,
 }
 
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum MPV {
+    V = 1,
+    NV = 0,
+}
+
+impl From<bool> for MPV {
+    fn from(value: bool) -> Self {
+        match value {
+            true => Self::V,
+            false => Self::NV,
+        }
+    }
+}
+
 impl From<bool> for Endianness {
     fn from(value: bool) -> Self {
         match value {
@@ -510,6 +525,14 @@ impl Mstatus {
     #[inline]
     pub fn set_sd(&mut self, sd: bool) {
         self.bits = bf_insert(self.bits, usize::BITS as usize - 1, 1, sd as usize);
+    }
+
+    pub fn mpv(&self) -> MPV {
+        MPV::from(bf_extract(self.bits, 39, 1) != 0)
+    }
+
+    pub fn gva(&self) -> bool {
+        bf_extract(self.bits, 38, 1) != 0
     }
 }
 

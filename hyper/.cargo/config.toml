@@ -6,4 +6,5 @@ runner = "qemu-system-riscv64 -M 512M -smp 1 -nographic -machine virt -kernel"
 # runner = "qemu-system-riscv64 -M 512M -smp 1 -cpu rv64,x-h=true -nographic -machine virt -bios none -kernel"
 rustflags = [
   "-C", "link-args=-T ./scripts/linker.ld",
+  "-C", "target-feature=+h",
 ]
