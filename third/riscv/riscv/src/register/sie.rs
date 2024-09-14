@@ -1,7 +1,7 @@
 //! sie register
 
 /// sie register
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Sie {
     bits: usize,
 }
@@ -33,6 +33,8 @@ impl Sie {
 }
 
 read_csr_as!(Sie, 0x104);
+write_csr_as!(Sie, 0x104);
+
 set!(0x104);
 clear!(0x104);
 

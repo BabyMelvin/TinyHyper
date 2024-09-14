@@ -1,7 +1,7 @@
 //! sip register
 
 /// sip register
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Sip {
     bits: usize,
 }
@@ -33,6 +33,8 @@ impl Sip {
 }
 
 read_csr_as!(Sip, 0x144);
+write_csr_as!(Sip, 0x144);
+
 set!(0x144);
 clear!(0x144);
 

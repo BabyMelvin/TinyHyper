@@ -14,6 +14,10 @@ pub struct Hcounteren {
 }
 
 impl Hcounteren {
+    pub fn bits(&self) -> usize {
+        self.bits
+    }
+
     // cycle
     pub fn cy(&self) -> bool {
         self.bits.get_bit(0)

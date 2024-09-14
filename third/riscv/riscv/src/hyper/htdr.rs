@@ -10,6 +10,12 @@ pub mod hideleg{
         bits: usize,
     }
 
+    impl Hideleg {
+        pub fn bits(&self) -> usize {
+            self.bits
+        }
+    }
+
     read_csr_as!(Hideleg, 0x603);
     write_csr_as!(Hideleg, 0x603);
 }
@@ -26,6 +32,12 @@ pub mod hedeleg {
     #[derive(Clone, Copy, PartialEq, Eq)]
     pub struct Hedeleg {
         bits: usize,
+    }
+
+    impl Hedeleg {
+        pub fn bits(&self) -> usize {
+            self.bits
+        }
     }
 
     read_csr_as!(Hedeleg, 0x602);

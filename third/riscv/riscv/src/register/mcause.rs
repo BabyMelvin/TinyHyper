@@ -24,12 +24,19 @@ pub enum Trap {
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 #[repr(usize)]
 pub enum Interrupt {
+    UserSoft = 0,
     SupervisorSoft = 1,
+    VirtualSupervisorSoft = 2,
     MachineSoft = 3,
+    UserTimer = 4,
     SupervisorTimer = 5,
+    VirtualSupervisorTimer = 6,
     MachineTimer = 7,
+    UserExternal = 8,
     SupervisorExternal = 9,
+    VirtualSupervisorExternal = 10,
     MachineExternal = 11,
+    SupervisorGuestExternal = 12,
     Unknown,
 }
 
@@ -47,10 +54,15 @@ pub enum Exception {
     StoreFault = 7,
     UserEnvCall = 8,
     SupervisorEnvCall = 9,
+    VirtualSupervisorEnvCall = 10,
     MachineEnvCall = 11,
     InstructionPageFault = 12,
     LoadPageFault = 13,
     StorePageFault = 15,
+    GuestInstructionPageFault = 20,
+    GuestLoadPageFault = 21,
+    VirtualInstruction = 22,
+    GuestStorePageFault = 23,
     Unknown,
 }
 
@@ -58,12 +70,19 @@ impl From<usize> for Interrupt {
     #[inline]
     fn from(nr: usize) -> Self {
         match nr {
+            0 => Self::UserSoft,
             1 => Self::SupervisorSoft,
+            2 => Self::VirtualSupervisorSoft,
             3 => Self::MachineSoft,
+            4 => Self::UserTimer,
             5 => Self::SupervisorTimer,
+            6 => Self::VirtualSupervisorTimer,
             7 => Self::MachineTimer,
+            8 => Self::UserExternal,
             9 => Self::SupervisorExternal,
+            10 => Self::VirtualSupervisorExternal,
             11 => Self::MachineExternal,
+            12 => Self::SupervisorGuestExternal,
             _ => Self::Unknown,
         }
     }
@@ -95,10 +114,15 @@ impl From<usize> for Exception {
             7 => Self::StoreFault,
             8 => Self::UserEnvCall,
             9 => Self::SupervisorEnvCall,
+            10 => Self::VirtualSupervisorEnvCall,
             11 => Self::MachineEnvCall,
             12 => Self::InstructionPageFault,
             13 => Self::LoadPageFault,
             15 => Self::StorePageFault,
+            20 => Self::GuestInstructionPageFault,
+            21 => Self::GuestLoadPageFault,
+            22 => Self::VirtualInstruction,
+            23 => Self::GuestStorePageFault,
             _ => Self::Unknown,
         }
     }

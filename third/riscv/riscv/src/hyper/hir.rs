@@ -89,6 +89,10 @@ pub mod hie {
     }
 
     impl Hie {
+        pub fn bits(&self) -> usize {
+            self.bits
+        }
+
         pub fn trap_in_hs_mode() -> bool {
             /* interrupt trap in HS-mode, all true:
                a. current is HS-mode and sstatus.SIE=1, or mode < HS-mode

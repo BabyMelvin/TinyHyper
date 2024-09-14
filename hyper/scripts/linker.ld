@@ -14,6 +14,8 @@ PHDRS
     bss PT_LOAD;
 }
 
+PROVIDE(_heap_size = 8M);
+
 SECTIONS
 {
     .start : {
@@ -49,6 +51,15 @@ SECTIONS
 
     PROVIDE(_stack_start = _bss_end);
     PROVIDE(_stack_end = _stack_start + 0x80000);
+
+    . =  _stack_end;
+    .heap (NOLOAD) :
+    {
+        _sheap = .;
+        . += _heap_size;
+        . = ALIGN(4);
+        _eheap = .;
+    }
 
     /DISCARD/ : {
         *(.eh_frame)
