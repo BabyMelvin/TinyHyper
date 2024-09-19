@@ -35,6 +35,7 @@ pub mod util;
 pub mod loader;
 pub mod vm;
 pub mod mm_g;
+pub mod memlayout;
 
 extern "C" {
     static _start: u8;

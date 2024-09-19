@@ -1,7 +1,6 @@
 use alloc::{vec::Vec, string::String};
 use bitflags::bitflags;
-use alloc::vec;
-use super::{address::{PhysPageNum, VirtPageNum, VirtAddr, PhysAddr, StepByOne}, frame::FrameTracker, frame_alloc};
+use super::{address::{PhysPageNum, VirtPageNum, VirtAddr, PhysAddr, StepByOne}, frame::FrameTracker, frame_alloc, frame_alloc_more};
 
 bitflags! {
     pub struct PTEFlags: u8 {
@@ -59,10 +58,11 @@ pub struct PageTable {
 /// Assume that it won't oom when creating/mapping.
 impl PageTable {
     pub fn new() -> Self {
-        let frame = frame_alloc().unwrap();
+        // 16KB, root page
+        let frames = frame_alloc_more(4).unwrap();
         PageTable {
-            root_ppn: frame.ppn,
-            frames: vec![frame],
+            root_ppn: frames[0].ppn,
+            frames: frames,
         }
     }
     /// Temporarily used to get arguments from user space.

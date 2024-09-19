@@ -3,12 +3,12 @@ use core::fmt::{self, Debug, Formatter};
 use super::page_table::PageTableEntry;
 
 // FIXME
-const PA_WIDTH_SV48x4: usize = 48;
-const VA_WIDTH_SV48x4: usize = 48;
-const PPN_WIDTH_SV48x4: usize = 48;
-const VPN_WIDTH_SV48x4: usize = 48;
-const PAGE_SIZE: usize = 0x2000; // 16K
-const PAGE_SIZE_BITS: usize = 14;
+pub const PA_WIDTH_SV48x4: usize = 56;
+pub const VA_WIDTH_SV48x4: usize = 50;
+pub const PPN_WIDTH_SV48x4: usize = 56;
+pub const VPN_WIDTH_SV48x4: usize = 50;
+pub const PAGE_SIZE: usize = 0x1000;
+pub const PAGE_SIZE_BITS: usize = 12;
 
 #[repr(C)]
 #[derive(Clone, Copy, PartialEq, Eq)]
